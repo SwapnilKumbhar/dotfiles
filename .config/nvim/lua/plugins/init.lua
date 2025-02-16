@@ -125,6 +125,19 @@ local spec = {
 			"rcarriga/nvim-notify",
 		},
 	},
+
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+	},
+
+	{
+		"ellisonleao/gruvbox.nvim",
+		priority = 1000,
+		config = true,
+		opts = ...,
+	},
 }
 
 require("lazy").setup({

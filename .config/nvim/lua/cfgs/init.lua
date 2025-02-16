@@ -146,18 +146,22 @@ require("noice").setup({
 	},
 })
 
--- Neodev
---require('neodev').setup({
---  library = {
---    plugins = {
---      "nvim-dap-ui"
---    },
---    types = true
---  },
---})
+-- Gruvbox
+require("gruvbox").setup({
+	{
+		italic = {
+			strings = false,
+			emphasis = false,
+			comments = false,
+			operators = false,
+			folds = false,
+		},
+		dim_inactive = true,
+	},
+})
 
 -- Cfgs in other files (The only ones that have complicated configs get their own file)
 require("cfgs.cmp")
+require("cfgs.mason")
 require("cfgs.mini_starter")
 require("cfgs.conform")
--- require("cfgs.dap")

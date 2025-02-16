@@ -1,34 +1,18 @@
--- All things mason and lspconfig will be here
-
-local mason_ok, mason = pcall(require, "mason")
-if not mason_ok then
-	return
-end
-
-mason.setup({
-	ui = {
-		icons = {
-			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗",
-		},
-	},
-})
-
 local handlers = require("lsp.handlers")
 
 -- Update servers here as you want
 local servers = {
 	"pyright",
-	"ts_ls",
 	"lua_ls",
 	"dockerls",
 	"clangd",
 	"rust_analyzer",
-	"tailwindcss",
+	-- "tailwindcss", -- Too noisy
 	"cmake",
 	"ltex",
 	"gopls",
+	"omnisharp",
+	"powershell_es",
 	-- Linters
 }
 

@@ -1,15 +1,8 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
+	print("[!] Could not load cmp")
 	return
 end
-
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-	return
-end
-
--- Snippets
-require("luasnip/loaders/from_vscode")
 
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
@@ -17,40 +10,34 @@ local check_backspace = function()
 end
 
 local kind_icons = {
-	Text = "",
-	Method = "m",
-	Function = "",
+	Text = "",
+	Method = "",
+	Function = "󰡱",
 	Constructor = "",
 	Field = "",
-	Variable = "",
+	Variable = "󰫧",
 	Class = "",
 	Interface = "",
 	Module = "",
 	Property = "",
 	Unit = "",
-	Value = "",
+	Value = "",
 	Enum = "",
 	Keyword = "",
 	Snippet = "",
 	Color = "",
-	File = "",
+	File = "",
 	Reference = "",
-	Folder = "",
+	Folder = "🗁",
 	EnumMember = "",
-	Constant = "",
+	Constant = "▲",
 	Struct = "",
 	Event = "",
-	Operator = "",
-	TypeParameter = "",
+	Operator = "",
+	TypeParameter = "",
 }
 
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body) -- For `luasnip` users.
-		end,
-	},
-
 	mapping = {
 		["<up>"] = cmp.mapping.select_prev_item(),
 		["<down>"] = cmp.mapping.select_next_item(),
@@ -65,13 +52,13 @@ cmp.setup({
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping(function(fallback)
+		["<C-n>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expandable() then
-				luasnip.expand()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
+			--elseif luasnip.expandable() then
+			--  luasnip.expand()
+			--elseif luasnip.expand_or_jumpable() then
+			--  luasnip.expand_or_jump()
 			elseif check_backspace() then
 				fallback()
 			else
@@ -84,8 +71,8 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
+			--elseif luasnip.jumpable(-1) then
+			--  luasnip.jump(-1)
 			else
 				fallback()
 			end
@@ -118,6 +105,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "vim-dadbod-completion" },
 	},
 
 	confirm_opts = {
