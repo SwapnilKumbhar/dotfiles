@@ -57,6 +57,9 @@ local whichMap = {
 	{ "<leader>ss", ":Ag<CR>", desc = "Text Search" },
 	{ "<leader>t", ":Tags<CR>", desc = "Search/Generate Tags" },
 	{ "<leader>v", ":vsplit<CR>", desc = "Split Verically" },
+
+	{ "<leader>l", group = "LazyGit" },
+	{ "<leader>ll", ":LazyGit<CR>", desc = "LazyGit" },
 }
 
 local wk = require("which-key")

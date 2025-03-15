@@ -138,6 +138,41 @@ local spec = {
 		config = true,
 		opts = ...,
 	},
+
+	{ "kkoomen/vim-doge" },
+
+	{
+		"iabdelkareem/csharp.nvim",
+		dependencies = {
+			"williamboman/mason.nvim", -- Required, automatically installs omnisharp
+			"mfussenegger/nvim-dap",
+			"Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
+		},
+		config = function()
+			require("mason").setup() -- Mason setup must run before csharp, only if you want to use omnisharp
+			require("csharp").setup()
+		end,
+	},
+
+	{
+		"kdheepak/lazygit.nvim",
+		lazy = false,
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("telescope").load_extension("lazygit")
+		end,
+	},
 }
 
 require("lazy").setup({
